@@ -1,24 +1,28 @@
 class Solution {
-    public int findMin(int[] nums) {
-        int n=nums.length;
+    public int findMin(int[] arr) {
         int l=0;
-        int r=n-1;
-        int ans = Integer.MAX_VALUE;
+        int r=arr.length-1;
+
+        int ans=Integer.MAX_VALUE;
 
         while(l<=r){
-            int m=(l+r)/2;
-            if(nums[l]<=nums[m]){
-                ans=Math.min(ans,nums[l]);
-                l=m+1;
-            }else{
-                ans=Math.min(ans,nums[m]);
-                r=m-1;
+            int mid=(l+r)/2;
+
+            if(arr[l]<arr[r]){
+                ans=Math.min(ans, arr[l]);
+                break;
             }
 
+            if(arr[l]<=arr[mid]){
+                ans=Math.min(ans,arr[l]);
+                l=mid+1;
+            }else{
+                ans=Math.min(ans,arr[mid]);
+                r=mid-1;
+            }
         }
 
         return ans;
-
 
     }
 }
