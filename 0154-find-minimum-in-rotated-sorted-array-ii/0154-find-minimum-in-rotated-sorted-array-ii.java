@@ -1,6 +1,29 @@
 class Solution {
     public int findMin(int[] nums) {
-        Arrays.sort(nums);
-        return nums[0];
+        int n=nums.length;
+        int l=0;
+        int r=n-1;
+        int ans = Integer.MAX_VALUE;
+
+        while(l<=r){
+            int m=(l+r)/2;
+            if(nums[l]==nums[m] && nums[m]==nums[r]){
+                while(l<n && r>=0 && nums[l]==nums[m] && nums[m]==nums[r]){
+                    l++;
+                    r--;
+                }
+            }
+            
+            if(l<n && r>=0 && nums[l]<=nums[m]){
+                ans=Math.min(ans,nums[l]);
+                l=m+1;
+            }else{
+                ans=Math.min(ans,nums[m]);
+                r=m-1;
+            }
+
+        }
+
+        return ans;
     }
 }
